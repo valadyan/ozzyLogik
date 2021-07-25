@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "Widget.h"
 #include "DbParser.h"
+#include "OperatorEditor.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +11,15 @@ int main(int argc, char *argv[])
 
   Widget* w = new Widget;
 
+  OperatorEditor* operatorEditor = new OperatorEditor();
+
   QObject::connect(dbParser, &DbParser::sendCountry,  w, &Widget::addCountry);
   QObject::connect(dbParser, &DbParser::sendOperator,  w, &Widget::addOperator);
+
+  QObject::connect(w, &Widget::newOperator, operatorEditor, &OperatorEditor::show);
+  QObject::connect(w, &Widget::newOperator, operatorEditor, &OperatorEditor::newOperator);
+
+  QObject::connect(operatorEditor, &OperatorEditor::addNewOperator, dbParser, &DbParser::createOperator);
 
   dbParser->readDb();
 

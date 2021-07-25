@@ -33,6 +33,16 @@ void DbParser::readDb(){
 
 }
 
+void DbParser::createOperator(QString name, QString mcc, QString mnc){
+  sendOperator(name, mcc, mnc);
+  query.prepare("INSERT INTO operators (name, mcc, mnc) "
+                "VALUES (:name, :mcc, :mnc)");
+  query.bindValue(":name", name);
+  query.bindValue(":mcc", mcc);
+  query.bindValue(":mnc", mnc);
+  query.exec();
+}
+
 //  query.exec("SELECT * FROM operators");
 //  query.exec("SELECT * FROM countries");
 

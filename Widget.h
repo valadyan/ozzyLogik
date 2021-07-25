@@ -18,6 +18,8 @@ public:
   Widget(QWidget *parent = nullptr);
   int16_t countryCount = - 1;
   ~Widget();
+signals:
+  void newOperator();
 public slots:
   void addCountry(QString name, QString mcc, QString pic);
   void addOperator(QString name, QString mcc, QString pic);

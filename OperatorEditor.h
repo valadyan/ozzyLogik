@@ -14,6 +14,12 @@ class OperatorEditor : public QWidget
 public:
   explicit OperatorEditor(QWidget *parent = nullptr);
   ~OperatorEditor();
+signals:
+  void addNewOperator(QString name, QString mcc, QString mnc);
+public slots:
+  void setOperator(QString name, QString mcc, QString mnc);
+  void newOperator();
+  void createOperator();
 
 private:
   Ui::OperatorEditor *ui;

@@ -18,6 +18,8 @@ public:
 signals:
   void sendCountry(QString name, QString mcc, QString pic);
   void sendOperator(QString name, QString mcc, QString mnc);
+public slots:
+  void createOperator(QString name, QString mcc, QString mnc);
 };
 
 #endif // DBPARSER_H
